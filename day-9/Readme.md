@@ -13,3 +13,4 @@ This folder contains the login and signup pages I built for my project.
 🔑 Included input fields for name, email, password, and confirm password.
 🎨 Matched the design with the login page for consistency.
 
+/
