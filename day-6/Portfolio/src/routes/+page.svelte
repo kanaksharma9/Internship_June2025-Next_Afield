@@ -93,18 +93,15 @@
 </style>
 
 <div class="landing">
-  <!-- Background video -->
   <video autoplay muted loop playsinline class="background-video">
     <source src="/video.mp4" type="video/mp4" />
     Your browser does not support the video tag.
   </video>
 
-  <!-- Typing name -->
   <h1 class="typed-name" aria-label="Kanak Sharma">
     {typedText}<span class="cursor">|</span>
   </h1>
 
-  <!-- Intro paragraph -->
   <div class="intro">
     <p>
       Welcome to my portfolio!<br /><br />
