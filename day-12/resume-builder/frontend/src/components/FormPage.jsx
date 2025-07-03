@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function FormPage() {
   const [name, setName] = useState("");
@@ -8,6 +9,7 @@ export default function FormPage() {
   const [skills, setSkills] = useState("");
   const [experience, setExperience] = useState("");
   const [education, setEducation] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -21,8 +23,8 @@ export default function FormPage() {
       education,
     };
     console.log(formData);
-
-    // Later: POST to backend or navigate to templates page
+    navigate("/templates", { state: { formData } });
+   
   };
 
   return (
@@ -80,10 +82,10 @@ export default function FormPage() {
           onChange={(e) => setEducation(e.target.value)}
           className="border p-2 block w-full"
         />
-
-        <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded">
-          Generate Resume
-        </button>
+      
+          <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded">
+            Select Template
+          </button>
       </form>
     </div>
   );

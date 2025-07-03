@@ -7,7 +7,7 @@ export default function LandingPage() {
       <h1 className="text-3xl font-bold mb-4">Welcome to AI Resume Builder</h1>
       </div>
       <div className="mx-20">
-      <Link to="/form">
+      <Link to="/form" >
         <button className="bg-blue-500 text-white px-10 py-20 rounded">
           Build My Resume
         </button>
