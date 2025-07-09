@@ -10,7 +10,6 @@ function DownloadPage() {
   const [resume, setResume] = useState(null);
 
   useEffect(() => {
-    // Fetch the saved resume from your backend using the ID
     const fetchResume = async () => {
       try {
         const response = await fetch(`http://localhost:5000/api/resume/${resumeId}`);
