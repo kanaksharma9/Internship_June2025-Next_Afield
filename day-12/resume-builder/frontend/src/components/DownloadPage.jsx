@@ -1,12 +1,16 @@
+
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
+import ClassicTemplate from "./ClassicTemplate";
+import ModernTemplate from "./ModernTemplate";
+import MinimalistTemplate from "./MinimalistTemplate";
+import "../App.css";
 
 function DownloadPage() {
   const location = useLocation();
   const { resumeId } = location.state || {};
-
   const [resume, setResume] = useState(null);
 
   useEffect(() => {
@@ -20,11 +24,7 @@ function DownloadPage() {
       }
     };
 
-    if (resumeId) {
-      fetchResume();
-    } else {
-      console.error("No resume ID found in location state!");
-    }
+    if (resumeId) fetchResume();
   }, [resumeId]);
 
   const handleDownload = () => {
@@ -32,51 +32,36 @@ function DownloadPage() {
     html2canvas(capture).then((canvas) => {
       const imgData = canvas.toDataURL("image/png");
       const doc = new jsPDF("p", "mm", "a4");
-
       const pageWidth = doc.internal.pageSize.getWidth();
-      const pageHeight = doc.internal.pageSize.getHeight();
-
-      const imgWidth = pageWidth;
-      const imgHeight = (canvas.height * imgWidth) / canvas.width;
-
-      doc.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
+      const imgHeight = (canvas.height * pageWidth) / canvas.width;
+      doc.addImage(imgData, "PNG", 0, 0, pageWidth, imgHeight);
       doc.save("resume.pdf");
     });
   };
 
-  if (!resume) {
-    return <div>Loading resume...</div>;
-  }
+  const renderTemplate = () => {
+    switch (resume?.template) {
+      case "1":
+      case 1:
+        return <ClassicTemplate resume={resume} />;
+      case "2":
+      case 2:
+        return <ModernTemplate resume={resume} />;
+      case "3":
+      case 3:
+        return <MinimalistTemplate resume={resume} />;
+      default:
+        return <ClassicTemplate resume={resume} />;
+    }
+  };
+
+  if (!resume) return <div className="loading">Loading resume...</div>;
 
   return (
-    <div className="p-8">
-      <div id="resume" className="p-6 bg-white shadow-md">
-        <h1 className="text-3xl font-bold mb-4">{resume.name}</h1>
-        <p><strong>Email:</strong> {resume.email}</p>
-        <p><strong>Phone:</strong> {resume.phone}</p>
-
-        <h2 className="text-xl font-semibold mt-4">Skills</h2>
-        <p>{resume.skills}</p>
-
-        <h2 className="text-xl font-semibold mt-4">Experience</h2>
-        <p>{resume.experience}</p>
-
-        <h2 className="text-xl font-semibold mt-4">Education</h2>
-        <p>{resume.education}</p>
-
-        <h2 className="text-xl font-semibold mt-4">Summary (AI)</h2>
-        <p>{resume.summary}</p>
-
-        <p className="mt-4 text-gray-500">
-          Using Template ID: {resume.template}
-        </p>
-      </div>
-
-      <button
-        onClick={handleDownload}
-        className="mt-6 bg-blue-600 text-white px-4 py-2 rounded"
-      >
-        Download as PDF
+    <div className="download-container">
+      <div id="resume">{renderTemplate()}</div>
+      <button onClick={handleDownload} className="classic-download-btn">
+        Download PDF
       </button>
     </div>
   );

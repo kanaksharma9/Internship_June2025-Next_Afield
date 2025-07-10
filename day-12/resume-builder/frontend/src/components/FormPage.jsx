@@ -1,92 +1,89 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function FormPage() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [summary, setSummary] = useState("");
-  const [skills, setSkills] = useState("");
-  const [experience, setExperience] = useState("");
-  const [education, setEducation] = useState("");
+function FormPage() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    location: "",
+    skills: "",
+    education: "",
+    template: "1",
+    experience: [
+      { title: "", company: "", location: "", startDate: "", endDate: "", description: "" }
+    ]
+  });
+
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleJobChange = (index, key, value) => {
+    const updated = [...formData.experience];
+    updated[index][key] = value;
+    setFormData((prev) => ({ ...prev, experience: updated }));
+  };
+
+  const addJob = () => {
+    setFormData((prev) => ({
+      ...prev,
+      experience: [
+        ...prev.experience,
+        { title: "", company: "", location: "", startDate: "", endDate: "", description: "" }
+      ]
+    }));
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const formData = {
-      name,
-      email,
-      phone,
-      summary,
-      skills,
-      experience,
-      education,
-    };
-    console.log(formData);
-    navigate("/templates", { state: { formData } });
-   
+    try {
+      const res = await fetch("http://localhost:5000/api/resume", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData)
+      });
+      const saved = await res.json();
+      navigate("/templates", { state: { resumeId: saved._id } });
+    } catch (err) {
+      console.error("Submission error:", err);
+    }
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Resume Builder Form</h1>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <input
-          type="text"
-          placeholder="Full Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          className="border p-2 block w-full"
-        />
+    <form onSubmit={handleSubmit}>
+      <input name="name" placeholder="Name" onChange={handleChange} required />
+      <input name="email" placeholder="Email" onChange={handleChange} required />
+      <input name="phone" placeholder="Phone" onChange={handleChange} required />
+      <input name="location" placeholder="Location" onChange={handleChange} required />
+      <input name="skills" placeholder="Skills (comma separated)" onChange={handleChange} />
+      <textarea name="education" placeholder="Education" onChange={handleChange} />
 
-        <input
-          type="text"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="border p-2 block w-full"
-        />
+      <h3>Experience</h3>
+      {formData.experience.map((job, i) => (
+        <div key={i}>
+          <input placeholder="Title" value={job.title} onChange={(e) => handleJobChange(i, "title", e.target.value)} />
+          <input placeholder="Company" value={job.company} onChange={(e) => handleJobChange(i, "company", e.target.value)} />
+          <input placeholder="Location" value={job.location} onChange={(e) => handleJobChange(i, "location", e.target.value)} />
+          <input placeholder="Start Date" value={job.startDate} onChange={(e) => handleJobChange(i, "startDate", e.target.value)} />
+          <input placeholder="End Date" value={job.endDate} onChange={(e) => handleJobChange(i, "endDate", e.target.value)} />
+          <textarea placeholder="Describe work" value={job.description} onChange={(e) => handleJobChange(i, "description", e.target.value)} />
+        </div>
+      ))}
+      <button type="button" onClick={addJob}>+ Add Job</button>
 
-        <input
-          type="text"
-          placeholder="Phone Number"
-          value={phone}
-          onChange={(e) => setPhone(e.target.value)}
-          className="border p-2 block w-full"
-        />
+      <select name="template" value={formData.template} onChange={handleChange}>
+        <option value="1">Classic</option>
+        <option value="2">Modern</option>
+        <option value="3">Minimalist</option>
+      </select>
 
-        <textarea
-          placeholder="Professional Summary"
-          value={summary}
-          onChange={(e) => setSummary(e.target.value)}
-          className="border p-2 block w-full"
-        />
-
-        <textarea
-          placeholder="Skills (comma separated)"
-          value={skills}
-          onChange={(e) => setSkills(e.target.value)}
-          className="border p-2 block w-full"
-        />
-
-        <textarea
-          placeholder="Work Experience"
-          value={experience}
-          onChange={(e) => setExperience(e.target.value)}
-          className="border p-2 block w-full"
-        />
-
-        <textarea
-          placeholder="Education"
-          value={education}
-          onChange={(e) => setEducation(e.target.value)}
-          className="border p-2 block w-full"
-        />
-      
-          <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded">
-            Select Template
-          </button>
-      </form>
-    </div>
+      <button type="submit">Continue</button>
+    </form>
   );
 }
+
+export default FormPage;

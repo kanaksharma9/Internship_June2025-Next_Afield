@@ -1,66 +1,41 @@
-import React from 'react'
-import { useState } from "react";
-import { useLocation ,useNavigate } from 'react-router-dom';
-
+import React from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function TemplatePage() {
   const location = useLocation();
-  const { formData } = location.state || {};
-  const [selectedTemplate, setSelectedTemplate] = useState(null);
-   const navigate = useNavigate();
+  const navigate = useNavigate();
+  const { resumeId } = location.state || {};
 
-  const templates = [
-  { id: 1, name: "Template One" },
-  { id: 2, name: "Template Two" },
-  { id: 3, name: "Template Three" },
-];
- const handleSelect = async (id) => {
-  setSelectedTemplate(id);
+  const handleSelect = async (template) => {
+    try {
+      await fetch(`http://localhost:5000/api/resume/${resumeId}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ template })
+      });
 
-  const aiResponse = await fetch("http://localhost:5000/api/ai/summary", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      skills: formData.skills,
-      experience: formData.experience,
-    }),
-  });
-  const aiData = await aiResponse.json();
-  const generatedSummary = aiData.summary;
-
-  const saveResponse = await fetch("http://localhost:5000/api/resume", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      ...formData,
-      template: id,
-      summary: generatedSummary,
-    }),
-  });
-
-  const saved = await saveResponse.json();
-  console.log("Saved:", saved);
-
-  navigate("/download", {
-    state: {
-      resumeId: saved._id,
-    },
-  });
-};
+      navigate("/download", { state: { resumeId } });
+    } catch (err) {
+      console.error("Error in template selection:", err);
+    }
+  };
 
   return (
-    <div>
-      {templates.map((template) => (
-        <div key={template.id}>
-          <h1>{template.name}</h1>
-          <button onClick={() => handleSelect(template.id)}>
-            Use this Template
-          </button>
+    <div className="template-page">
+      <h2>Select a Resume Template</h2>
+      <div className="template-gallery">
+        <div className="template-card" onClick={() => handleSelect("1")}>Classic
+          <img src="/images/classic.jpg" alt="Classic Template Preview" />
         </div>
-      ))}
+        <div className="template-card" onClick={() => handleSelect("2")}>Modern
+          <img src="/images/modern.jpg" alt="Modern Template Preview" />
+        </div>
+        <div className="template-card" onClick={() => handleSelect("3")}>Minimalist
+          <img src="/images/minimalist.jpg" alt="Minimalist Template Preview" />
+        </div>
+      </div>
     </div>
   );
 }
-
 
 export default TemplatePage;

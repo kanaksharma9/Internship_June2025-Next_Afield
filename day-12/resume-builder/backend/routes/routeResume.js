@@ -1,4 +1,3 @@
-
 const express = require("express");
 const router = express.Router();
 const Resume = require("../models/Resume");
@@ -9,28 +8,19 @@ router.post("/", async (req, res) => {
     const saved = await newResume.save();
     res.json(saved);
   } catch (err) {
-    console.error(err);
-    res.status(500).send("Server error");
+    console.error("MongoDB Save Error:", err);
+    res.status(500).json({ error: "MongoDB error" });
   }
 });
 
 router.get("/:id", async (req, res) => {
   try {
     const resume = await Resume.findById(req.params.id);
+    if (!resume) return res.status(404).json({ error: "Resume not found" });
     res.json(resume);
   } catch (err) {
-    console.error(err);
-    res.status(500).send("Server error");
-  }
-});
-
-router.put("/:id", async (req, res) => {
-  try {
-    const updated = await Resume.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    res.json(updated);
-  } catch (err) {
-    console.error(err);
-    res.status(500).send("Server error");
+    console.error("MongoDB Fetch Error:", err);
+    res.status(500).json({ error: "Server error" });
   }
 });
 

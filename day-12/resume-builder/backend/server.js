@@ -18,7 +18,7 @@ mongoose.connect(process.env.MONGO_URI, {
 }).then(() => console.log("MongoDB connected!"))
   .catch((err) => console.error(err));
 
-// Wire your routes
+
 app.use("/api/resume", resumeRoutes);
 app.use("/api/ai", aiRoutes);
 
