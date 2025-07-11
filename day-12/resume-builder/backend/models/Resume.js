@@ -1,12 +1,13 @@
 const mongoose = require("mongoose");
 
-const jobSchema = new mongoose.Schema({
+const experienceSchema = new mongoose.Schema({
   title: String,
   company: String,
   location: String,
   startDate: String,
   endDate: String,
-  bullets: [String],
+  description: String,
+  bullets: [String]
 });
 
 const resumeSchema = new mongoose.Schema({
@@ -16,9 +17,7 @@ const resumeSchema = new mongoose.Schema({
   location: String,
   skills: String,
   education: String,
-  template: String,
-  experience: [jobSchema],
+  experience: [experienceSchema]
 }, { timestamps: true });
 
 module.exports = mongoose.model("Resume", resumeSchema);
-

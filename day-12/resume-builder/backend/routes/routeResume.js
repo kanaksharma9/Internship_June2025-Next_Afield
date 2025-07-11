@@ -2,26 +2,27 @@ const express = require("express");
 const router = express.Router();
 const Resume = require("../models/Resume");
 
+// POST resume
 router.post("/", async (req, res) => {
   try {
-    const newResume = new Resume(req.body);
-    const saved = await newResume.save();
-    res.json(saved);
+    const resume = new Resume(req.body);
+    const saved = await resume.save();
+    res.status(201).json(saved);
   } catch (err) {
-    console.error("MongoDB Save Error:", err);
-    res.status(500).json({ error: "MongoDB error" });
+    res.status(500).json({ error: "Failed to save resume" });
   }
 });
 
+// GET resume by ID
 router.get("/:id", async (req, res) => {
   try {
     const resume = await Resume.findById(req.params.id);
     if (!resume) return res.status(404).json({ error: "Resume not found" });
     res.json(resume);
   } catch (err) {
-    console.error("MongoDB Fetch Error:", err);
-    res.status(500).json({ error: "Server error" });
+    res.status(500).json({ error: "Failed to fetch resume" });
   }
 });
 
 module.exports = router;
+

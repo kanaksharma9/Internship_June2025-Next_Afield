@@ -1,68 +1,72 @@
-
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useLocation } from "react-router-dom";
-import jsPDF from "jspdf";
-import html2canvas from "html2canvas";
-import ClassicTemplate from "./ClassicTemplate";
-import ModernTemplate from "./ModernTemplate";
-import MinimalistTemplate from "./MinimalistTemplate";
+import html2pdf from "html2pdf";
 import "../App.css";
 
 function DownloadPage() {
   const location = useLocation();
-  const { resumeId } = location.state || {};
   const [resume, setResume] = useState(null);
+  const resumeRef = useRef();
 
   useEffect(() => {
     const fetchResume = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/api/resume/${resumeId}`);
-        const data = await response.json();
+        const res = await fetch(`http://localhost:5000/api/resume/${location.state.resumeId}`);
+        const data = await res.json();
         setResume(data);
-      } catch (error) {
-        console.error("Error fetching resume:", error);
+      } catch (err) {
+        console.error("Fetch error:", err);
       }
     };
-
-    if (resumeId) fetchResume();
-  }, [resumeId]);
+    if (location.state?.resumeId) fetchResume();
+  }, [location.state]);
 
   const handleDownload = () => {
-    const capture = document.querySelector("#resume");
-    html2canvas(capture).then((canvas) => {
-      const imgData = canvas.toDataURL("image/png");
-      const doc = new jsPDF("p", "mm", "a4");
-      const pageWidth = doc.internal.pageSize.getWidth();
-      const imgHeight = (canvas.height * pageWidth) / canvas.width;
-      doc.addImage(imgData, "PNG", 0, 0, pageWidth, imgHeight);
-      doc.save("resume.pdf");
-    });
+    const element = resumeRef.current;
+    html2pdf().from(element).save(`${resume.name}_Resume.pdf`);
   };
 
-  const renderTemplate = () => {
-    switch (resume?.template) {
-      case "1":
-      case 1:
-        return <ClassicTemplate resume={resume} />;
-      case "2":
-      case 2:
-        return <ModernTemplate resume={resume} />;
-      case "3":
-      case 3:
-        return <MinimalistTemplate resume={resume} />;
-      default:
-        return <ClassicTemplate resume={resume} />;
-    }
+  const formatText = (text) => {
+    return text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\*(.*?)\*/g, '<em>$1</em>');
   };
 
-  if (!resume) return <div className="loading">Loading resume...</div>;
+  if (!resume) return <p>Loading...</p>;
 
   return (
-    <div className="download-container">
-      <div id="resume">{renderTemplate()}</div>
-      <button onClick={handleDownload} className="classic-download-btn">
-        Download PDF
-      </button>
+    <div className="page-wrapper">
+      <div className="resume-wrapper">
+        <div className="resume-container" ref={resumeRef}>
+          <div className="resume-header">
+            <h1>{resume.name}</h1>
+            <p>{resume.email} | {resume.phone} | {resume.location}</p>
+          </div>
+          <div className="resume-section">
+            <h2>Skills</h2>
+            <div className="skills-list">
+              {resume.skills.split(",").map((skill, i) => <span key={i} className="skill-pill">{skill.trim()}</span>)}
+            </div>
+          </div>
+          <div className="resume-section">
+            <h2>Education</h2>
+            <p>{resume.education}</p>
+          </div>
+          <div className="resume-section">
+            <h2>Experience</h2>
+            {resume.experience.map((job, i) => (
+              <div key={i} className="job-block">
+                <strong>{job.title}</strong> — {job.company} {job.date || ""}<br />
+                <em>{job.location}</em>
+                <ul>
+                  {job.bullets.map((point, j) => (
+                    <li key={j} dangerouslySetInnerHTML={{ __html: formatText(point) }}></li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      <button className="download-btn" onClick={handleDownload}>Download PDF</button>
     </div>
   );
 }

@@ -1,161 +1,204 @@
-.download-container {
-  max-width: 850px;
-  margin: 40px auto;
-  padding: 20px;
-  font-family: 'Georgia', serif;
-  background-color: #f8f8f8;
-}
-
-.classic-resume {
-  background: #fff;
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #f0f0f0;
   padding: 40px;
-  border: 1px solid #ccc;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  min-width: 89rem;
 }
 
-.classic-header {
+.resume-wrapper {
+  display: flex;
+  justify-content: center;
+  min-width: 9rem;
+}
+
+.resume-container {
+  width: 595px;
+  height: 842px;
+  background-color: #fff;
+  padding: 40px;
+  font-family: 'Georgia', serif;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  color: #000;
+}
+
+.resume-header {
   text-align: center;
   margin-bottom: 30px;
 }
 
-.classic-name {
-  font-size: 36px;
-  font-weight: 700;
+.resume-header h1 {
+  font-size: 2.2em;
   margin-bottom: 5px;
 }
 
-.classic-contact {
-  font-size: 14px;
-  color: #555;
+.resume-section {
+  margin-bottom: 25px;
 }
 
-.classic-section {
-  margin-top: 30px;
-}
-
-.classic-title {
-  font-size: 20px;
-  font-weight: bold;
-  border-bottom: 2px solid #ccc;
+.resume-section h2 {
+  font-size: 1.4em;
+  border-bottom: 1px solid #000;
+  padding-bottom: 5px;
   margin-bottom: 10px;
-  color: #2c3e50;
 }
 
-.classic-job {
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.skill-pill {
+  font-size: 14px;
+}
+
+.landing-container {
+  min-width: 95rem;
+  height: 100vh;
+  background: linear-gradient(135deg, #0041c2, #007bff);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  box-sizing: border-box;
+}
+
+.landing-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 50px;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.text-section {
+  flex: 1;
+}
+
+.text-section h1 {
+  font-size: 2.8rem;
+  font-weight: bold;
   margin-bottom: 20px;
 }
 
-.classic-job-header {
-  font-size: 16px;
-  font-weight: 600;
-  margin-bottom: 6px;
-  position: relative;
+.text-section p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
 }
 
-.classic-job-date {
-  position: absolute;
-  right: 0;
-  font-size: 14px;
-  font-style: italic;
-  color: #777;
+.cta-button {
+  background-color: #ffcb05;
+  color: #000;
+  font-weight: bold;
+  padding: 16px 30px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s ease;
 }
 
-.classic-bullets {
-  margin-left: 20px;
-  list-style-type: disc;
+.cta-button:hover {
+  background-color: #e0b700;
 }
 
-.classic-bullets li {
-  margin-bottom: 6px;
-  line-height: 1.6;
+.image-section {
+  flex: 1;
+  display: flex;
+  justify-content: center;
 }
 
-.classic-download-btn {
-  display: block;
-  margin: 30px auto;
-  background-color: #2e6ac3;
+.image-section img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+
+.form-container {
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  min-width: 94rem;
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #0057ff, #00c6ff);
+  color: #333;
+}
+
+.resume-form {
+  background: white;
+  padding: 40px 60px;
+  border-radius: 1%;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 600px;
+  margin: 2%;
+}
+
+.resume-form h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #002147;
+}
+
+.resume-form input,
+.resume-form textarea {
+  width: 100%;
+  padding: 10px 14px;
+  margin-bottom: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.resume-form textarea {
+  height: 80px;
+  resize: vertical;
+}
+
+.job-entry {
+  margin-bottom: 30px;
+  border-left: 4px solid #0057ff;
+  padding-left: 12px;
+}
+
+.add-btn {
+  display: inline-block;
+  margin-bottom: 20px;
+  padding: 10px 16px;
+  background-color: #00c6ff;
   color: white;
-  padding: 10px 20px;
-  font-size: 16px;
   border: none;
   border-radius: 6px;
-  cursor: pointer;
-}
-
-.classic-download-btn:hover {
-  background-color: #1e4e9d;
-}
-
-.loading {
-  text-align: center;
-  font-size: 20px;
-  margin-top: 100px;
-  color: #555;
-}
-
-.modern-resume {
-  display: flex;
-  background-color: #f5f5f5;
-  font-family: Arial, sans-serif;
-}
-
-.modern-sidebar {
-  background-color: #222;
-  color: white;
-  padding: 20px;
-  width: 250px;
-  flex-shrink: 0;
-}
-
-.modern-main {
-  padding: 30px;
-  flex-grow: 1;
-  background: white;
-}
-
-.modern-section {
-  margin-bottom: 20px;
-}
-
-.modern-block h2 {
-  font-size: 20px;
-  color: #333;
-  border-bottom: 1px solid #ccc;
-  margin-bottom: 10px;
-}
-
-.modern-job {
-  margin-bottom: 15px;
-}
-
-.modern-job-header {
-  font-weight: 600;
-  margin-bottom: 5px;
-}
-
-/* Minimalist Template */
-.minimalist-resume {
-  font-family: "Helvetica Neue", sans-serif;
-  padding: 40px;
-  color: #333;
-  line-height: 1.5;
-}
-
-.minimalist-header {
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.minimalist-header h1 {
-  font-size: 32px;
   font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s ease;
 }
 
-.minimalist-job {
-  margin-bottom: 20px;
+.add-btn:hover {
+  background-color: #00a0cc;
 }
 
-.minimalist-job ul {
-  margin-left: 20px;
-  list-style: disc;
+.submit-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #0057ff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.submit-btn:hover {
+  background-color: #003bb3;
 }
