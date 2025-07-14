@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GlowSkin - Skincare Redefined</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body, html {
+      height: 100%;
+      background-color: #fdfaf6;
+      color: #4e4e4e;
+    }
+
+    header {
+      width: 100%;
+      padding: 1rem 2rem;
+      background-color: #f2e8dc;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #b5987a;
+    }
+
+    nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: #7b6e5d;
+      font-weight: 500;
+      cursor: pointer;
+      transition: color 0.2s ease-in-out;
+    }
+
+    nav a:hover {
+      color: #a3856a;
+    }
+
+    .main{
+        padding: 2rem; 
+        background-color: #fdfaf6; 
+        color: #4e4e4e; 
+        font-family: 'Segoe UI', Tahoma, sans-serif;
+    }
+
+    .product{
+        width: 100%%; 
+        text-align: center; 
+        margin: 1rem;
+    }
+    .box{
+        height: 120px; background-color: #e7ded0; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+
+    .main p{
+        margin-top: 0.5rem; font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">GlowSkin</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href='about.html'>About</a>
+      <a href='products.html'>Products</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+    <div class='main'>
+    <h1 style="color: #b5987a; margin-bottom: 1.5rem; margin-left: 40%;">Products</h1>
+    <div style="display: flex; flex-wrap: wrap; gap: 3rem; justify-content: flex-start;">
+        <div class='product'>
+            <div class='box'></div>
+            <p >Foaming Cleanser</p>
+        </div>
+        <div class='product'>
+            <div class='box'></div>
+            <p >Night Serum</p>
+        </div>
+        <div class='product'>
+            <div class='box'></div>
+            <p >Day Cream</p>
+        </div>
+        <div class='product'>
+            <div class='box'></div>
+            <p >Sun Shield SPF 50+</p>
+        </div>
+        <div class='product'>
+            <div class='box'></div>
+            <p >Clay Mask</p>
+        </div>
+    </div>
+    </div>
+</body>
+</html>

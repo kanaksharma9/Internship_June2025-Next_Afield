@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GlowSkin - Skincare Redefined</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body, html {
+      height: 100%;
+      background-color: #fdfaf6;
+      color: #4e4e4e;
+    }
+
+    header {
+      width: 100%;
+      padding: 1rem 2rem;
+      background-color: #f2e8dc;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #b5987a;
+    }
+
+    nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: #7b6e5d;
+      font-weight: 500;
+      cursor: pointer;
+      transition: color 0.2s ease-in-out;
+    }
+
+    nav a:hover {
+      color: #a3856a;
+    }
+
+    .main {
+      display: flex;
+      height: calc(100% - 70px);
+      overflow: hidden;
+      flex-direction: row;
+    }
+
+    .intro {
+      width: 55%;
+      padding: 3rem;
+      background: linear-gradient(to bottom, #fdfaf6, #f7f2eb);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .intro h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #b5987a;
+    }
+
+    .intro p {
+      font-size: 1.1rem;
+      max-width: 500px;
+      line-height: 1.6;
+    }
+
+    .intro button {
+      margin-top: 2rem;
+      padding: 0.8rem 1.5rem;
+      background-color: #b5987a;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+      width: fit-content;
+    }
+
+    .content-frame {
+      width: 50%;
+      background: linear-gradient(to bottom, #fdfaf6, #f7f2eb);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .content-frame img {
+      width: 100%;
+      height: 100%;
+
+    }
+
+    @media (max-width: 768px) {
+      .main {
+        flex-direction: column;
+      }
+      .intro, .content-frame {
+        width: 100%;
+        height: 50%;
+      }
+      
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">GlowSkin</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href='about.html'>About</a>
+      <a href='product.html'>Products</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <div class="main">
+    <div class="intro">
+      <h1>Glow Naturally with GlowSkin</h1>
+      <p>Experience a serene, elegant approach to skincare with our calming, minimalist collection. Navigate through our world with the links on top — all without scrolling.</p>
+    <a href='about.html'><button >Explore More</button></a>
+    </div>
+    <div class="content-frame">
+      <img src='landing.jpg'/>
+    </div>
+  </div>
+</body>
+</html>

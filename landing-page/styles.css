@@ -1,0 +1,81 @@
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body, html {
+      height: 100%;
+      background-color: #f5f1eb;
+      color: #4e4e4e;
+    }
+
+    header {
+      width: 100%;
+      padding: 1rem 2rem;
+      background-color: #eae3d2;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #a67b5b;
+    }
+
+    nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: #6b5c4d;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .main {
+      display: flex;
+      height: calc(100% - 70px);
+      overflow: hidden;
+    }
+
+    .intro {
+      width: 55%;
+      padding: 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .intro h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #a67b5b;
+    }
+
+    .intro p {
+      font-size: 1.2rem;
+      max-width: 500px;
+    }
+
+    .content-frame {
+      width: 45%;
+      background: url('https://images.unsplash.com/photo-1583337130417-3346a1c1d99b?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80') center/cover no-repeat;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    @media (max-width: 768px) {
+      .main {
+        flex-direction: column;
+      }
+      .intro, .content-frame {
+        width: 100%;
+        height: 50%;
+      }
+    }
