@@ -21,7 +21,7 @@
     header {
       width: 100%;
       padding: 1rem 2rem;
-      background-color: #f2e8dc;
+      background-color: 		#cebfb6;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -31,7 +31,7 @@
     .logo {
       font-size: 1.5rem;
       font-weight: bold;
-      color: #b5987a;
+      color:	#f9e8e5;
     }
 
     nav a {
@@ -47,61 +47,103 @@
       color: #a3856a;
     }
 
-    .main{
-        padding: 2rem; 
-        background-color: #fdfaf6; 
-        color: #4e4e4e; 
-        font-family: 'Segoe UI', Tahoma, sans-serif;
+    .main {
+      padding: 2rem;
+      background-color: #ece6e3;
+      height: calc(100% - 70px);
+
     }
 
-    .product{
-        width: 100%%; 
-        text-align: center; 
-        margin: 1rem;
-    }
-    .box{
-        height: 120px; background-color: #e7ded0; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    h1 {
+      color: #b5987a;
+      margin-bottom: 2rem;
+      text-align: center;
     }
 
-    .main p{
-        margin-top: 0.5rem; font-weight: 500;
+    .products-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      gap: 2rem;
+    }
+
+    .product {
+      flex: 1 1 calc(30% - 2rem);
+      max-width: 300px;
+      min-width: 200px;
+      text-align: center;
+    }
+
+    .box img {
+      height: 200px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .product p {
+      margin-top: 0.75rem;
+      font-weight: 500;
+      font-size: 1.1rem;
+    }
+
+    @media (max-width: 768px) {
+      .product {
+        flex: 1 1 100%;
+      }
+
+      .box {
+        height: 160px;
+      }
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="logo">GlowSkin</div>
+    <div class="logo">Glowyy</div>
     <nav>
       <a href="index.html">Home</a>
-      <a href='about.html'>About</a>
-      <a href='products.html'>Products</a>
+      <a href="about.html">About</a>
+      <a href="product.html">Products</a>
       <a href="contact.html">Contact</a>
     </nav>
   </header>
-    <div class='main'>
-    <h1 style="color: #b5987a; margin-bottom: 1.5rem; margin-left: 40%;">Products</h1>
-    <div style="display: flex; flex-wrap: wrap; gap: 3rem; justify-content: flex-start;">
-        <div class='product'>
-            <div class='box'></div>
-            <p >Foaming Cleanser</p>
-        </div>
-        <div class='product'>
-            <div class='box'></div>
-            <p >Night Serum</p>
-        </div>
-        <div class='product'>
-            <div class='box'></div>
-            <p >Day Cream</p>
-        </div>
-        <div class='product'>
-            <div class='box'></div>
-            <p >Sun Shield SPF 50+</p>
-        </div>
-        <div class='product'>
-            <div class='box'></div>
-            <p >Clay Mask</p>
-        </div>
+
+  <div class="main">
+    <h1>Products</h1>
+    <div class="products-container">
+      <div class="product">
+        <div class="box"><img src='landing.jpg'/></div>
+        <p>Foaming Cleanser</p>
+      </div>
+      <div class="product">
+        <div class="box"><img src='night-serum.jpg'/></div>
+        <p>Night Serum</p>
+      </div>
+      <div class="product">
+        <div class="box"><img src='day-cream.jpg'/></div>
+        <p>Day Cream</p>
+      </div>
+      <div class="product">
+        <div class="box"><img src='sunscreen.jpg'/></div>
+        <p>Sun Shield SPF 50+</p>
+      </div>
+      <div class="product">
+        <div class="box"><img src='clay-mask.jpg'/></div>
+        <p>Clay Mask</p>
+      </div>
+      <div class="product">
+        <div class="box"><img src='day-serum.jpg'/></div>
+        <p>Day Serum</p>
+      </div>
+      <div class="product">
+        <div class="box"><img src='moisturiser.jpg'/></div>
+        <p>Moisturiser</p>
+      </div>
+      <div class="product">
+        <div class="box"><img src='toner.jpg'/></div>
+        <p>Toner</p>
+      </div>
     </div>
-    </div>
+  </div>
 </body>
 </html>
