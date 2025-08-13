@@ -11,6 +11,7 @@ function Page(){
     const [email, setEmail] = useState("");
     const [users, setUsers] = useState([]);
     const router = useRouter()
+    
     const handleSubmit = (e) => {
     e.preventDefault();
     if (!name.trim() || !email.trim()) return;
