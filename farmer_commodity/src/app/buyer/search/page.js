@@ -1,17 +1,26 @@
 'use client'
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Image from 'next/image';
 
 function Page () {
   const [cropInput, setCropInput] = useState('');
   const [crops, setCrops] = useState([]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!cropInput.trim()) return;
 
-    setCrops((prev) => [...prev, cropInput]);
+    await fetch("/api/crops", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ crop: cropInput }),
+  });
+
+  const res = await fetch("/api/crops");
+  const data = await res.json();
+  setCrops(data);
+
     setCropInput('');
   }
   return (

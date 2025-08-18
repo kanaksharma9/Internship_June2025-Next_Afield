@@ -6,15 +6,14 @@ import { useRouter } from 'next/navigation'
 
 function Page(){
 
-    const  [role, setRole] = useState("buyer");
-    const [name, setName] = useState("");
     const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
     const [users, setUsers] = useState([]);
     const router = useRouter()
     
     const handleSubmit = (e) => {
     e.preventDefault();
-    if (!name.trim() || !email.trim()) return;
+    if ( !email.trim()) return;
 
     const userExists = users.some((user) => user.email === email);
     if (userExists) {
@@ -22,29 +21,19 @@ function Page(){
     return;
     }
 
-    const newUser = { name, email, role };
+    const newUser = { email, password };
     setUsers((prev) => [...prev, newUser]);
     
     router.push(role === "buyer" ? `/buyer?name=${encodeURIComponent(name)}` : `/seller?name=${encodeURIComponent(name)}`);
 
-    setName("");
     setEmail("");
-    setRole("buyer");
+    setPassword("");
   };
 
     return (
     <div className="">
-        <h1>Signin</h1>
+        <h1>Login</h1>
          <form onSubmit={handleSubmit} style={{ marginBottom: "20px" }}>
-        <div>
-          <label>Name: </label>
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder="Enter name"
-          />
-        </div>
         <br />
         <div>
           <label>Email: </label>
@@ -55,16 +44,17 @@ function Page(){
             placeholder="Enter email"
           />
         </div>
-        <br />
-        <div>
-          <label>Role: </label>
-          <select value={role} onChange={(e) => setRole(e.target.value)}>
-            <option value="buyer">Buyer</option>
-            <option value="seller">Seller</option>
-          </select>
+         <div>
+          <label>Password: </label>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Enter Password"
+          />
         </div>
         <br />
-        <button type="submit">Signin</button>
+        <button type="submit">Login</button>
       </form>
       
       

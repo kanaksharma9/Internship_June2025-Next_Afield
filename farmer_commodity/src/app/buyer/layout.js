@@ -3,8 +3,6 @@ import Link from "next/link"
 
 export default function BuyerLayout({ children }) {
   return (
-    <html lang="en">
-      <body>
         <main>
             <div className="flex justify-between bg-emerald-600 px-4">
                 <div className="order-1">
@@ -30,7 +28,5 @@ export default function BuyerLayout({ children }) {
         </div>
             {children}
         </main>
-      </body>
-    </html>
   )
 }

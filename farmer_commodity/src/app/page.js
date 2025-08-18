@@ -10,7 +10,7 @@ export default function Page() {
     < div className='h-screen bg-blue-200'>
       <div className='bg-blue-900 flex justify-between  text-white h-15 p-4'>
           <h3 className='order-1 text-2xl'>MarketPlace </h3>
-          <Link className='order-3' href='/login'> 
+          <Link className='order-3' href='/signin'> 
               <button className='rounded shadow bg-cyan-300 p-2  text-1.5xl hover:bg-sky-700'>Sign/Login</button>
           </Link>
       </div>
