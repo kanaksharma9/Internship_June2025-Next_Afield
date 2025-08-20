@@ -3,15 +3,29 @@ import Image from 'next/image'
 
 function Page (){
   return (
-    <div className='bg-amber-900 h-screen'>
-      <div>
-        <div className='h-auto bg-black '>
-            <Image dir='ltr'
-            className='ms-100'
-            width={1000}
-            height={1000}
-            src= '/farmer.jpg'
-            alt=' image'/>
+    <div>
+      <div className='flex justify-between m-50'>
+        <div className='order-1 my-20'>
+            <p>dhejkqslmbhnedgvehfhvbjdkcdbhcwnskmkxdb</p>
+        </div>
+        <div className=' order-2 '>
+              <Image 
+              width={500}
+              height={500}
+              src= '/farmer.jpg'
+              alt=' image'/>
+        </div>
+      </div>
+      <div className='flex justify-between m-50'>
+        <div className='order-1 my-20'>
+            <p>dhejkqslmbhnedgvehfhvbjdkcdbhcwnskmkxdb</p>
+        </div>
+        <div className=' order-2 '>
+              <Image 
+              width={500}
+              height={500}
+              src= '/farmer.jpg'
+              alt=' image'/>
         </div>
       </div>
     </div>

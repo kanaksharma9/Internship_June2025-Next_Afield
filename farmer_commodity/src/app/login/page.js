@@ -31,33 +31,35 @@ function Page(){
   };
 
     return (
-    <div className="">
-        <h1>Login</h1>
-         <form onSubmit={handleSubmit} style={{ marginBottom: "20px" }}>
-        <br />
-        <div>
-          <label>Email: </label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter email"
-          />
+      <div className='bg-emerald-800 h-screen flex'>
+        <div className=" border-2 mx-120 my-25 max-h-80 bg-white rounded">
+            <h1 className='text-4xl mx-55 p-2'>Login</h1>
+            <form onSubmit={handleSubmit} style={{ marginBottom: "20px" }}>
+            <br />
+            <div className='mx-35 p-1 my-1'>
+              <label>Email: </label>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter email"
+                className='border rounded'
+              />
+            </div>
+            <div className='mx-35 p-1 my-1'>
+              <label>Password: </label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Enter Password"
+                className='border rounded'
+              />
+            </div>
+            <br />
+            <button type="submit" className='mx-55 p-1 rounded bg-lime-500'>Login</button>
+          </form>
         </div>
-         <div>
-          <label>Password: </label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Enter Password"
-          />
-        </div>
-        <br />
-        <button type="submit">Login</button>
-      </form>
-      
-      
     </div>
     )
 }

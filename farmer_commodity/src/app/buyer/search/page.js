@@ -40,7 +40,7 @@ function Page () {
         </form>
         <ul className='mx-150 my-2'>
             {crops.map((crop, index)=>(
-                <li key={index} className='rounded border my-3 p-1'>{crop}</li>
+                <li key={index} className='rounded border my-3 p-1'>{crop.crop}</li>
             ))}
         </ul>
         </div>

@@ -7,16 +7,16 @@ import Image from 'next/image';
 
 export default function Page() {
   return (
-    < div className='h-screen bg-blue-200'>
-      <div className='bg-blue-900 flex justify-between  text-white h-15 p-4'>
-          <h3 className='order-1 text-2xl'>MarketPlace </h3>
+    < div className='h-screen bg-emerald-800'>
+      <div className='bg-lime-500 flex justify-between h-15 p-4'>
+          <h3 className='order-1 text-2xl font-extrabold'>MarketPlace </h3>
           <Link className='order-3' href='/signin'> 
-              <button className='rounded shadow bg-cyan-300 p-2  text-1.5xl hover:bg-sky-700'>Sign/Login</button>
+              <button className='rounded shadow font-medium p-1 bg-emerald-600 hover:bg-emerald-300'>Sign/Login</button>
           </Link>
       </div>
       <div className='flex space-x-8 m-36 '>
           <div>
-            <p className='text-1xl my-24 font-sans font-bold'>kejdhghwjqkl;wqkjhgvfwdhbxskmlxjnhbvcgxfvhbjnkjhg <br/>
+            <p className='text-1xl text-white my-24 font-sans font-bold'>kejdhghwjqkl;wqkjhgvfwdhbxskmlxjnhbvcgxfvhbjnkjhg <br/>
             ytfrdesrdtfyguhijokpkjihukygjchb</p>
           </div>
           <div>

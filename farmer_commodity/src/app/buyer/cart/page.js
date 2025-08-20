@@ -12,8 +12,8 @@ function Page(){
     setNum(data);
   }
   return (
-    <div>
-      <h2>Total items: {num}</h2>
+    <div className='mx-120 font-extrabold'>
+      <h2 className='text-4xl'>Total items: {num}</h2>
     </div>
   )
 }

@@ -4,20 +4,19 @@ import Item from "@/models/crops";
 
 export async function POST(request) {
   await connectDB();
-  const body = await request.json(); 
+  const { crop } = await request.json();
 
-  const {item} = body;
-if (!item.trim()) {
-    return NextResponse.json(
-      { error: "crop is required" },
-      { status: 400 }
-    );
-  }
+if (!crop?.trim()) {
+  return NextResponse.json(
+    { error: "crop is required" },
+    { status: 400 }
+  );
+}
 
-  const crop = new Item({ item });
-  await crop.save();
+const newItem = new Item({ crop });
+await newItem.save();
 
-  return NextResponse.json({ message: "Crop added" });
+return NextResponse.json({ message: "Crop added" });
 }
 
 export async function GET() {
