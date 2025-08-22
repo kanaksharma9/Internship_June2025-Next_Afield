@@ -2,8 +2,6 @@ import Link from "next/link"
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body >
         <main className='bg-gray-200 h-screen'>
             <div className="flex justify-center bg-gray-500 text-white p-3">
                 <Link href='/events' className="mx-2 hover:text-black"><button>Events</button></Link>
@@ -12,7 +10,5 @@ export default function RootLayout({ children }) {
             </div>
           {children}
         </main>
-      </body>
-    </html>
   )
 }
