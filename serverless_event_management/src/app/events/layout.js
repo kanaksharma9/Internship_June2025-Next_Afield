@@ -1,4 +1,5 @@
 import Link from "next/link"
+import withAuth from '../../components/withAuth';
 
 export default function RootLayout({ children }) {
   return (
